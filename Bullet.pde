@@ -1,27 +1,14 @@
-class Spaceship extends Floater  
-{  
-  Spaceship()
+class Bullet extends Floater
+{
+  Bullet (Spaceship theShip)
   {
-    corners = 4;
-    xCorners = new int[corners];
-    yCorners = new int[corners];
-    //myColor = color(48,85,27);
-    myColor = color(255);
-    myCenterX = 200;
-    myCenterY = 200;
-    myDirectionX = 0;
-    myDirectionY = 0;
-    myPointDirection = 0;
-    xCorners[0] = -8;
-    yCorners[0] = -8;
-    xCorners[1] = 16;
-    yCorners[1] = 0;
-    xCorners[2] = -8;
-    yCorners[2] = 8;
-    xCorners[3] = -2;
-    yCorners[3] = 0;
+    myCenterX = theShip.getX();
+    myCenterY = theShip.getY();
+    myPointDirection = theShip.getPointDirection();
+    double dRadians = myPointDirection*(Math.PI/180);
+    myDirectionX = (5*Math.cos(dRadians)) + theShip.getDirectionX();
+    myDirectionY = (5*Math.sin(dRadians)) + theShip.getDirectionY();
   }
-    //your code here
    public void setX(int x){myCenterX = x;}  
    public int getX(){return (int)myCenterX;}   
    public void setY(int y){myCenterY = y;}   
@@ -32,5 +19,12 @@ class Spaceship extends Floater
    public double getDirectionY(){return myDirectionY;}   
    public void setPointDirection(int degrees){myPointDirection = degrees;}   
    public double getPointDirection(){return myPointDirection;} 
+  
 
+public void show ()  //Draws the floater at the current position  
+  {             
+    fill(255,0,0); 
+    noStroke();
+    ellipse((float)myCenterX,(float)myCenterY,5,5);   
+  }   
 }
